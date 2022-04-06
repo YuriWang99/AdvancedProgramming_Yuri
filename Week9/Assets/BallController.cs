@@ -86,7 +86,7 @@ public class BallController : MonoBehaviour
 
     public void GoTowardsMouse(bool towards)
     {
-        var vectorTowardsMouse = (transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition)).normalized;
+        var vectorTowardsMouse = (transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition));
         vectorTowardsMouse.z = 0;
         
         if (towards) 

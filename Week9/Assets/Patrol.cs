@@ -13,6 +13,7 @@ public class Patrol : MonoBehaviour
     //public float HungryBar = 10f;
     //public bool isEnemy;
     public  List<Transform> wayPoints = new List<Transform>();
+    public GameObject cube;
     public Transform curDestination;
 
     void Start()
@@ -28,14 +29,24 @@ public class Patrol : MonoBehaviour
             new Sequence<Patrol>
             (
                  new Condition<Patrol>(IsEnemy),
-                 new Do<Patrol>(ChaseEnemy)
+                 new Do<Patrol>(ChaseEnemy),
+                 new Do<Patrol>(DestroyEnemy)
 
                 )
             );
-        var _tree = new Tree<Patrol>
+        var mouseDownTree = new Tree<Patrol>
+        (
+            new Sequence<Patrol>
+            (
+                new IsMouseDown(),
+                new Do<Patrol>(GenerateCube)
+            )
+        );
+        _tree = new Tree<Patrol>
          (
             new Selector<Patrol>
            (
+             mouseDownTree,
              detectEnemy,
              new Do<Patrol>(PatrolMode)
             )
@@ -50,9 +61,27 @@ public class Patrol : MonoBehaviour
     {
         _tree.Update(this);
         //IsEnemy();
+        Debug.Log(Vector3.Distance(curDestination.position, this.transform.position));
     }
 
     #region CustomizeMethods
+    public class IsMouseDown : BehaviorTree.Node<Patrol>
+    {
+        public override bool Update(Patrol context)
+        {
+            return Input.GetMouseButton(0);
+        }
+    }
+    public bool GenerateCube(Patrol context)
+    {
+        
+        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 1;
+        
+        Debug.Log(pos);
+        Instantiate(cube, pos, Quaternion.identity);
+        return true;
+    }
 
     private bool IsEnemy(Patrol context)
     {
@@ -69,6 +98,9 @@ public class Patrol : MonoBehaviour
                     break;
                 }
             }
+        }
+        if(curDestination.gameObject.tag=="Enemy")
+        {
             return true;
         }
         else
@@ -79,20 +111,26 @@ public class Patrol : MonoBehaviour
     }
     private bool ChaseEnemy(Patrol context)
     {
+        Guard.speed = WalkSpeed*3;
         Move();
+        return true;
+    }
+    private bool DestroyEnemy(Patrol context)
+    {
+        if(Vector3.Distance(curDestination.position, this.transform.position) < 1.5f&& curDestination.gameObject.tag=="Enemy")
+        {
+            Destroy(curDestination.gameObject);
+            curDestination = wayPoints[Random.Range(0, wayPoints.Count)];
+        }
         return true;
     }
     private bool PatrolMode(Patrol context)
     {
-        curDestination = wayPoints[Random.Range(0, wayPoints.Count)];
-        float minDist = float.MaxValue;
-        foreach(var point in wayPoints)
+
+        if (Vector3.Distance(curDestination.position, this.transform.position)<1.5f)
         {
-            if(Vector3.Distance(point.position, this.transform.position) < minDist)
-            {
-                minDist = Vector3.Distance(point.position, this.transform.position);
-                curDestination = point;
-            }
+
+            curDestination = wayPoints[Random.Range(0, wayPoints.Count)];
         }
         Guard.speed = WalkSpeed;
         Move();
