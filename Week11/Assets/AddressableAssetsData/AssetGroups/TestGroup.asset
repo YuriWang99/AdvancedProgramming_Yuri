@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TestGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: TestGroup
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 56739fa7d58f0254ca88c683cba977c3
+  m_SerializeEntries:
+  - m_GUID: a07f99a3c8d85ef478b39842ee920464
+    m_Address: Assets/Assets_Testing/Material/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c81d17438b66d04cae8526ed5d08428
+    m_Address: Assets/Assets_Testing/Material/Green.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 488d342bb2058a849b4e0b41c543b2bc
+    m_Address: Assets/Assets_Testing/Material/Orange.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08b3d95830f93e9499655c5f49c7f49e
+    m_Address: Assets/Assets_Testing/Material/Pink.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a64f63cc0f75604fa5881146b833bd1
+    m_Address: Assets/Assets_Testing/Material/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d1f653e5219e4d6458f423edabbc7291
+    m_Address: Assets/Assets_Testing/Material/Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d1b55b63a4579c3488f7659b8294ed18
+    m_Address: Assets/Assets_Testing/Models/AssetCube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d3226bf59110ab49b4b2ba0110c2db5
+    m_Address: Assets/Assets_Testing/Models/BlueCube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6e40f2e18c0559342acf0027b83729b3
+    m_Address: Assets/Assets_Testing/Models/RedCube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3d9408b2858f32d4b863a7e4c47cf777, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5a189552ab4e3584ba89b787758807ed, type: 2}
+    - {fileID: 11400000, guid: 6e2fd4d65cdbde44d960d7d0b2b5b316, type: 2}
